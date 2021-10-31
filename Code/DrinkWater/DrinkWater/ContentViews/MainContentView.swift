@@ -23,12 +23,12 @@ struct MainContentView: View {
                 /// Header view with the title and profile icon
                 headerView
 
-                /// Progress section
+                /// прогресс
                 progressSection
                 
                 Divider()
                 
-                /// History and Empty view
+                /// история вью
                 if model.todayRecords.count == 0 {
                     EmptyStateView()
                 } else {
@@ -47,10 +47,10 @@ struct MainContentView: View {
                 }
             }
             
-            /// Add drink plus button
+            /// Aдобавит кнопку выпить
             addDrinkButton
             
-            /// Show drink selector
+            /// Показать селектор напитков
             if isDrinkSelectorShowing {
                 DrinkSelectorView(model: model, isDrinkSelectorShowing: $isDrinkSelectorShowing)
                     .edgesIgnoringSafeArea(.all)
@@ -66,7 +66,7 @@ struct MainContentView: View {
         }
     }
     
-    /// Main header view with the title and profile icon on the right
+    /// Основной вид заголовка с заголовком и значком профиля справа
     private var headerView: some View {
         VStack {
             HStack {
@@ -89,7 +89,7 @@ struct MainContentView: View {
         }.padding()
     }
     
-    /// Add drink record button
+    /// кнопка добавить выпить
     private var addDrinkButton: some View {
         VStack {
             Spacer()
@@ -112,7 +112,7 @@ struct MainContentView: View {
         }.padding()
     }
     
-    /// Progress section
+    /// прогресс
     private var progressSection: some View {
         VStack {
             ZStack {

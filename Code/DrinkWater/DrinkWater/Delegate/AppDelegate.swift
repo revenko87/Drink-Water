@@ -55,7 +55,7 @@ extension CGFloat {
     }
 }
 
-/// Rounded corner shape by providing which corners to be rounded
+///Форма закругленных углов, указав, какие углы должны быть скруглены
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
@@ -66,7 +66,7 @@ struct RoundedCorner: Shape {
     }
 }
 
-/// Image picker
+/// Средство выбора изображений
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?

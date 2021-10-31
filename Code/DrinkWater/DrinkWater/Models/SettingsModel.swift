@@ -8,42 +8,42 @@
 
 import UIKit
 
-/// Metric system used by the app for U.S. and other countries
+/// Метрическая система, используемая приложением для США и других стран.
 enum MetricSystem: String {
     case us, eu
     
-    /// Text for the metric system
+    /// Текст для метрической системы
     var text: String {
         if self == .us {
-            return "lbs | oz"
+            return "Фунтов | Унций"
         }
         return "кг | мл"
     }
     
-    /// Volume metric
+    /// Объемная метрика
     var volumeText: String {
-        self == .us ? "кг" : "мл"
+        self == .us ? "Унций" : "мл"
     }
     
-    /// Conversion rate for the metric system
-    /// 1oz = 29.57ml & 1lb = 0.45kg
+    ///Коэффициент конверсии для метрической системы
+    /// 1 унция = 29,57 мл и 1 фунт = 0,45 кг
     static func rate(type: AmountSelectorType) -> CGFloat {
         return type == .volume ? 29.57 : 0.45
     }
     
-    /// Weight to recommended daily water intake ratio
+    /// Соотношение веса и рекомендуемой суточной нормы потребления воды
     var weightWaterRatio: Double {
-        self == .us ? 0.75 : 30.33 /// 0.75oz per 1lb of weight AND 30.33ml per 1kg
+        self == .us ? 0.75 : 30.33 /// 0,75 унции на 1 фунт веса И 30,33 мл на 1 кг
     }
 }
 
-/// Push notification schedule
+/// пуш уведомления
 enum PushNotification: String, CaseIterable {
     case morning = "Good morning! Get some water and have a nice day!"
     case noon = "Hey, don't forget to stay hydrated"
     case evening = "Check-in and see your progress"
     
-    /// Hour of the day set in 24hours format
+    /// Час дня установлен в 24-часовом формате
     var time: DateComponents {
         var components = DateComponents()
         switch self {
@@ -58,12 +58,12 @@ enum PushNotification: String, CaseIterable {
     }
 }
 
-/// Main model for user's settings
+/// Основная модель для пользовательских настроек
 class SettingsModel: ObservableObject {
     @Published var metricSystem: MetricSystem = .us
     @Published var userAvatar: UIImage?
     
-    /// Default initializer
+    /// Инициализатор по умолчанию
     init() { fetchSettingsData() }
     
     func fetchSettingsData() {
@@ -71,30 +71,30 @@ class SettingsModel: ObservableObject {
             metricSystem = MetricSystem(rawValue: savedMetricSystem) ?? .us
         }
         name = UserDefaults.standard.string(forKey: "name") ?? "Guest"
-        recommendedWater = "\(sliderSavedValue(type: .weight) * metricSystem.weightWaterRatio) \(metricSystem.rawValue)"
+        recommendedWater = "\(Int(sliderSavedValue(type: .weight) * metricSystem.weightWaterRatio)) \(metricSystem == .us ? "Унций" : "мл")"
     }
     
-    /// Details based on the selector type
+    /// Детали в зависимости от типа селектора
     func sliderText(type: AmountSelectorType) -> (title: String, type: String) {
         switch type {
         case .volume:
-            return ("Необходимо выпить", metricSystem == .us ? "oz" : "мл")
+            return ("Необходимо выпить", metricSystem == .us ? "Унций" : "мл")
         case .weight:
-            return ("Ваш вес:", metricSystem == .us ? "lbs" : "kg")
+            return ("Ваш вес:", metricSystem == .us ? "Фунтов" : "кг")
         }
     }
     
-    /// Slider range based on the selector type
+    /// Диапазон ползунка в зависимости от типа селектора
     func sliderRange(type: AmountSelectorType) -> ClosedRange<CGFloat> {
         switch type {
         case .volume:
-            return metricSystem == .us ? 34...380 : 20...1000
+            return metricSystem == .us ? 34...380 : 20...10000
         case .weight:
             return metricSystem == .us ? 50...400 : 30...150
         }
     }
     
-    /// Slider saved value
+    /// Сохраненное значение ползунка
     func sliderSavedValue(type: AmountSelectorType) -> Double {
         let value = UserDefaults.standard.double(forKey: "\(type.rawValue)_\(metricSystem.rawValue)")
         return value == 0.0 ? Double(sliderRange(type: type).lowerBound) : value
@@ -104,7 +104,7 @@ class SettingsModel: ObservableObject {
         UserDefaults.standard.object(forKey: "offset_\(type.rawValue)") as? CGFloat
     }
     
-    /// User's name
+    /// юзер имя
     var name: String = UserDefaults.standard.string(forKey: "name") ?? "Guest"
     
     /// Recommended water based on weight

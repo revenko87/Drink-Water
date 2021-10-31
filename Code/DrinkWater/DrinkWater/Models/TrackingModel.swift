@@ -15,36 +15,37 @@ struct DrinkRecord: Identifiable {
     var recordVolume: Int
     var metricSystem: MetricSystem
     //привет сафир
-    /// To be shown on the history section
+    /// Для отображения в разделе истории
     var formattedTime: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
+        formatter.locale =  Locale(identifier: "ru_RU")
+        formatter.dateFormat = "HH:mm"
         return formatter.string(from: Date(timeIntervalSince1970: timestamp))
     }
     
     var formattedVolume: String {
-        "\(recordVolume) \(metricSystem == .us ? "кг" : "мл")"
+        "\(recordVolume) \(metricSystem == .us ? "Унций" : "мл")"
     }
 }
 
-/// Main model to track progress
+/// Основная модель для отслеживания прогресса
 class TrackingModel: SettingsModel {
 
-    /// Current progress for today
+    /// Текущий прогресс на сегодня
     @Published var currentProgress: Int = 0
     private var sliderValue: Double = 0
     
-    /// Saved data key
+    /// Ключ сохраненных данных
     private var savedDataKey: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM, dd"
         return dateFormatter.string(from: Date())
     }
     
-    /// Saved metric system/type
+    /// Сохраненная метрическая система / тип
     var dailyGoal: Double = 0.0
     
-    /// Today's data
+    /// сегодняшняя дата
     var todayRecords: [DrinkRecord] {
         if let data = UserDefaults.standard.value(forKey: savedDataKey) as? [String: Int] {
             var items = [DrinkRecord]()
@@ -59,12 +60,12 @@ class TrackingModel: SettingsModel {
         return []
     }
     
-    /// Percentage value
+    /// Процентное значение
     var percentage: Int {
         (currentProgress * 100) / Int(dailyGoal)
     }
     
-    /// Fetch saved settings data
+    /// Получить данные сохраненных настроек
     override func fetchSettingsData() {
         super.fetchSettingsData()
         dailyGoal = UserDefaults.standard.double(forKey: "\(AmountSelectorType.volume.rawValue)_\(metricSystem.rawValue)")
@@ -73,7 +74,7 @@ class TrackingModel: SettingsModel {
     }
     
     override func sliderText(type: AmountSelectorType) -> (title: String, type: String) {
-        ("Сколько сейчас вы выпили?", metricSystem == .us ? "кг" : "мл")
+        ("Сколько сейчас вы выпили?", metricSystem == .us ? "Унций" : "мл")
     }
     
     override func sliderSavedValue(type: AmountSelectorType) -> Double {

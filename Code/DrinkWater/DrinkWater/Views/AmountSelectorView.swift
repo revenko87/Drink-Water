@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-/// Slider selector type
+/// Тип переключателя слайдера
 enum AmountSelectorType: String {
     case volume
     case weight
 }
 
-/// Custom slider for weight and volume
+/// Пользовательский слайдер для веса и объема
 struct AmountSelectorView: View {
     
     @State var xOffset: CGFloat = 0
@@ -22,10 +22,10 @@ struct AmountSelectorView: View {
     @State var didChangeDefaultValue: Bool = false
     @ObservedObject var model: SettingsModel
     
-    /// Type of selector
+    /// Тип селектора
     var selectorType: AmountSelectorType = .volume
     
-    // Main rendering function for this view
+    // Основная функция рендеринга для этого вида
     var body: some View {
         VStack(spacing: 8) {
             selectorValueTitleText
@@ -55,7 +55,7 @@ struct AmountSelectorView: View {
                                         self.sliderValue = Double(updatedValue)
                                     }
                                     
-                                    /// Save user changes
+                                    /// Сохранить изменения пользователя
                                     if self.selectorType == .volume {
                                         self.model.didChangeIntakeGoal(self.sliderValue, offset: self.xOffset)
                                     } else {
@@ -66,7 +66,7 @@ struct AmountSelectorView: View {
                 }
             }.frame(height: 35)
             
-            /// Recommended water based on weight
+            /// Рекомендуемая вода в зависимости от веса
             if selectorType == .weight {
                 Text("Рекомендовано выпить: \(model.recommendedWater)")
                     .foregroundColor(.white)
@@ -80,7 +80,7 @@ struct AmountSelectorView: View {
         })
     }
     
-    /// The title and value for a selector/slider
+    /// Название и значение для селектора / слайдера.
     private var selectorValueTitleText: some View {
         HStack {
             Text(model.sliderText(type: selectorType).title)

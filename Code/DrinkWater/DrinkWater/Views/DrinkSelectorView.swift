@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-/// Shown when user is ready to add a drink
+/// Отображается, когда пользователь готов добавить напиток
 struct DrinkSelectorView: View {
     @ObservedObject var model: TrackingModel
     @Binding var isDrinkSelectorShowing: Bool
     @State private var bottomOffset: CGFloat = 200.0
 
-    // Main rendering function for this view
+    // Основная функция рендеринга для этого вида
     var body: some View {
         drinkSelector
             .onAppear(perform: {
@@ -22,7 +22,7 @@ struct DrinkSelectorView: View {
             })
     }
     
-    /// Drink selector/slider
+    /// Селектор / слайдер напитков
     private var drinkSelector: some View {
         ZStack {
             Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)).onTapGesture {
@@ -49,7 +49,7 @@ struct DrinkSelectorView: View {
         }
     }
     
-    /// Done button on the top right corner
+    /// Кнопка "Готово" в правом верхнем углу
     private var doneButton: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)

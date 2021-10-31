@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// Shows the empty state for when user doesn't have any drink records
+/// Показывает пустое состояние, когда у пользователя нет записей о напитках
 struct EmptyStateView: View {
     var body: some View {
         GeometryReader { reader in

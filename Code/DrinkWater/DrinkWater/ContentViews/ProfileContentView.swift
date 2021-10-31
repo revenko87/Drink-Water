@@ -24,14 +24,14 @@ struct ProfileContentView: View {
             /// User profile image
             userProfileImage
             
-            /// User name
+            /// User name/имя
             userProfileName
             
-            /// Footer view with the metrics system switch and sliders
+            /// Footer view with the metrics system switch and sliders/Нижний колонтитул с переключателем системы показателей и ползунками
             VStack {
                 metricsSystemSwitch
                 
-                /// Change selectors based on metrics system
+                /// Изменить селекторы на основе системы показателей
                 selectors
             }
             .edgesIgnoringSafeArea(.bottom)
@@ -44,7 +44,7 @@ struct ProfileContentView: View {
         })
     }
     
-    /// Drink and Weight selectors/sliders
+    /// Селекторы / ползунки выбора напитка и веса
     private var selectors: some View {
         ZStack {
             RoundedCorner(radius: 30, corners: [.topLeft, .topRight])
@@ -62,7 +62,7 @@ struct ProfileContentView: View {
         .frame(height: 270)
     }
     
-    /// Done button on the top right corner
+    /// Кнопка "Готово" в правом верхнем углу
     private var doneButton: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
@@ -82,7 +82,7 @@ struct ProfileContentView: View {
         .frame(width: 75, height: 30)
     }
     
-    /// User profile image
+    /// картинка профайла польщователя
     private var userProfileImage: some View {
         VStack {
             HStack {
@@ -103,7 +103,7 @@ struct ProfileContentView: View {
         }
     }
     
-    /// User profile name
+    /// профайл пользователя
     private var userProfileName: some View {
         VStack {
             Divider().padding(.bottom, 10)
@@ -120,7 +120,7 @@ struct ProfileContentView: View {
         }
     }
     
-    /// Metrics system switch
+    /// Переключатель системы показателей
     private var metricsSystemSwitch: some View {
         VStack {
             Spacer()
@@ -134,7 +134,7 @@ struct ProfileContentView: View {
                     Text(settingsModel.metricSystem.text).foregroundColor(.black)
                 })
             }
-            .frame(width: 90, height: 30)
+            .frame(width: 130, height: 30)
             .padding(.bottom, 12)
             Spacer()
         }
