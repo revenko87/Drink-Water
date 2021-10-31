@@ -14,7 +14,7 @@ struct DrinkRecord: Identifiable {
     var timestamp: TimeInterval
     var recordVolume: Int
     var metricSystem: MetricSystem
-    
+    //привет сафир
     /// To be shown on the history section
     var formattedTime: String {
         let formatter = DateFormatter()
