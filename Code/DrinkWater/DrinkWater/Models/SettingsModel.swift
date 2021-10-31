@@ -1,9 +1,5 @@
-//
-//  SettingsModel.swift
-//  DrinkWater
-//
-//  Created by Apps4World on 7/7/20.
-//  Copyright © 2020 Apps4World. All rights reserved.
+//  Created by Revenko on 7/7/20.
+//  Copyright © 202 Revenko. All rights reserved.
 //
 
 import UIKit
@@ -39,9 +35,9 @@ enum MetricSystem: String {
 
 /// пуш уведомления
 enum PushNotification: String, CaseIterable {
-    case morning = "Good morning! Get some water and have a nice day!"
-    case noon = "Hey, don't forget to stay hydrated"
-    case evening = "Check-in and see your progress"
+    case morning = "Доброе утро! Выпей воды и хорошего тебе дня!"
+    case noon = "Эй, не забывай пить"
+    case evening = "Посмотри свой прогресс!"
     
     /// Час дня установлен в 24-часовом формате
     var time: DateComponents {

@@ -1,10 +1,5 @@
-//
-//  TrackingModel.swift
-//  DrinkWater
-//
-//  Created by Apps4World on 7/7/20.
-//  Copyright © 2020 Apps4World. All rights reserved.
-//
+//  Created by Revenko on 7/7/20.
+//  Copyright © 202 Revenko. All rights reserved.
 
 import UIKit
 
