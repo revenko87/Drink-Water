@@ -94,9 +94,3 @@ struct AmountSelectorView: View {
     }
 }
 
-// MARK: - Canvas Preview
-struct AmountSelectorView_Previews: PreviewProvider {
-    static var previews: some View {
-        AmountSelectorView(model: SettingsModel())
-    }
-}

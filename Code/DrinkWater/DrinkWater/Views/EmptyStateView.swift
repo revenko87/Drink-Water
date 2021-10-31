@@ -29,10 +29,3 @@ struct EmptyStateView: View {
         }
     }
 }
-
-// MARK: - Canvas Preview
-struct EmptyStateView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmptyStateView()
-    }
-}

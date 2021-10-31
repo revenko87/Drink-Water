@@ -154,10 +154,3 @@ struct MainContentView: View {
         }
     }
 }
-
-// MARK: - Canvas Preview
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainContentView()
-    }
-}
